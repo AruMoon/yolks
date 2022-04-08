@@ -10,4 +10,4 @@ ENV         DEBIAN_FRONTEND=noninteractive
 RUN         dpkg --add-architecture i386 \
 				&& apt update \
 				&& apt upgrade -y \
-				&& apt -y --no-install-recommends install ca-certificates curl lib32gcc-s1 libsdl2-2.0-0:i386 git wget libedit-dev:i386 zlib1g-dev:i386 libedit-dev zlib1g-dev python gcc g++ gcc-multilib g++-multilib pkg-config libopus-dev libopus:i386
+				&& apt -y --no-install-recommends install ca-certificates curl lib32gcc-s1 libsdl2-2.0-0:i386 git wget libedit-dev:i386 zlib1g-dev:i386 libedit-dev zlib1g-dev python gcc g++ gcc-multilib g++-multilib pkg-config libopus-dev libopus-dev:i386
