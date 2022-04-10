@@ -19,7 +19,17 @@ cd /home/container || exit 1
 # replacing the values.
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 
-## TODO Auto-updates from compiling source code
+if [ -z ${AUTO_UPDATE} ] || [ "$AUTO_UPDATE" == "1" ]; then
+    wget https://gitlab.com/AruMoon/source-engine-dedicated/-/jobs/artifacts/ssdk-2013/download?job=linux_${SRCDS_GAME}_dedicated_${ARCH} -O artifacts.zip
+    unzip artifacts.zip
+    cp -r out/* ./
+    rm -rf artifacts.zip out/ .wget-hsts
+
+    cp bin/libvstdlib.so bin/libvstdlib_srv.so
+    cp bin/libtier0.so bin/libtier0_srv.so
+else
+    echo -e "Not updating game server as auto update was set to 0. Starting Server"
+fi
 
 # Display the command we're running in the output, and then execute it with the env
 # from the container itself.
