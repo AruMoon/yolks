@@ -20,11 +20,15 @@ cd /home/container || exit 1
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 
 if [ -z ${AUTO_UPDATE} ] || [ "$AUTO_UPDATE" == "1" ]; then
-    wget https://gitlab.com/AruMoon/source-engine-dedicated/-/jobs/artifacts/ssdk-2013/download?job=linux_${SRCDS_GAME}_dedicated_${ARCH} -O artifacts.zip
-    unzip artifacts.zip
-    cp -r out/* ./
-    rm -rf artifacts.zip out/ .wget-hsts
+    git clone https://github.com/nillerusr/source-engine.git src
+    cd src
+    git pull
+    git submodule update --init --recursive
+    ./waf configure -T release -d --build-game=${SRCDS_GAME} --prefix=/home/container
+    ./waf install -j$(getconf _NPROCESSORS_ONLN)
+    cd /home/container
 
+    # Notice: copying these libraries for metamod plugin environment because of some metamod hardcode
     cp bin/libvstdlib.so bin/libvstdlib_srv.so
     cp bin/libtier0.so bin/libtier0_srv.so
 else
