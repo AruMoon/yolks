@@ -24,13 +24,13 @@ if [ -z ${AUTO_UPDATE} ] || [ "$AUTO_UPDATE" == "1" ]; then
     cd src
     git pull
     git submodule update --init --recursive
-    ./waf configure -T release -d --build-game=${SRCDS_GAME} --prefix=/home/container
-    ./waf install -j$(getconf _NPROCESSORS_ONLN)
+    ./waf install --strip
+    ./waf configure -T release -d -4 --build-game=${SRCDS_GAME} --prefix=/home/container
+    ./waf install --strip
     cd /home/container
 
-    # Notice: copying these libraries for metamod plugin environment because of some metamod hardcode
-    cp bin/libvstdlib.so bin/libvstdlib_srv.so
-    cp bin/libtier0.so bin/libtier0_srv.so
+    ln -s bin/libvstdlib.so bin/libvstdlib_srv.so
+    ln -s bin/libtier0.so bin/libtier0_srv.so
 else
     echo -e "Not updating game server as auto update was set to 0. Starting Server"
 fi
