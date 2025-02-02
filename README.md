@@ -71,6 +71,8 @@ is tagged correctly.
     * `ghcr.io/pterodactyl/yolks:java_19`
   * [`java19 - OpenJ9`](https://github.com/pterodactyl/yolks/tree/master/java/19j9)
     * `ghcr.io/pterodactyl/yolks:java_19j9`
+  * [`java21`](https://github.com/pterodactyl/yolks/tree/master/java/21)
+    * `ghcr.io/pterodactyl/yolks:java_21`
 * [`nodejs`](https://github.com/pterodactyl/yolks/tree/master/nodejs)
   * [`node12`](https://github.com/pterodactyl/yolks/tree/master/nodejs/12)
     * `ghcr.io/pterodactyl/yolks:nodejs_12`
@@ -84,6 +86,8 @@ is tagged correctly.
     * `ghcr.io/pterodactyl/yolks:nodejs_17`
   * [`node18`](https://github.com/pterodactyl/yolks/tree/master/nodejs/18)
     * `ghcr.io/pterodactyl/yolks:nodejs_18`
+  * [`node20`](https://github.com/pterodactyl/yolks/tree/master/nodejs/18)
+    * `ghcr.io/pterodactyl/yolks:nodejs_20`
 * [`python`](https://github.com/pterodactyl/yolks/tree/master/python)
   * [`python3.7`](https://github.com/pterodactyl/yolks/tree/master/python/3.7)
     * `ghcr.io/pterodactyl/yolks:python_3.7`
