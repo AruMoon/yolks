@@ -33,8 +33,10 @@ if [ -z ${AUTO_UPDATE} ] || [ "${AUTO_UPDATE}" == "1" ]; then
     # Update Source Server
     if [ ! -z ${GLDSRC_APPID} ]; then
         ./steamcmd/steamcmd.sh +force_install_dir /home/container +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} +app_update ${GLDSRC_APPID} $( [[ -z ${GLDSRC_BETAID} ]] || printf %s "-beta ${GLDSRC_BETAID}" ) $( [[ -z ${GLDSRC_BETAPASS} ]] || printf %s "-betapassword $GLDSRC_BETAPASS}" ) $( [[ -z ${HLDS_GAME} ]] || printf %s "+app_set_config 90 mod ${HLDS_GAME}" ) $( [[ -z ${VALIDATE} ]] || printf %s "validate" ) +quit
-        curl -L https://gitlab.com/tyabus/xash3d/-/jobs/artifacts/master/raw/out2/engine/xash3d?job=linux_dedicated -o /home/container/xashds
-        chmod +x /home/container/xashds
+        wget https://github.com/FWGS/xash3d-fwgs/releases/download/continuous/xashds-linux-i386.tar.gz
+		tar -zxvf xashds-linux-i386.tar.gz && rm xashds-linux-i386.tar.gz
+		mv xashds-linux-i386/* .
+		rmdir xashds-linux-i386/
     else
         echo -e "No appid set. Starting Server"
     fi
